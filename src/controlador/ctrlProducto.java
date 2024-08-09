@@ -27,8 +27,10 @@ public class ctrlProducto implements MouseListener {
     public void mouseClicked(MouseEvent e) {
         if(e.getSource() == vista.btnGuardar){
             modelo.setNombre(vista.txtNombre.getText());
-            modelo.setPrecio(vista.txtPrecio.getText());
-            modelo.setCategoria(vista.);
+            modelo.setPrecio(Double.parseDouble(vista.txtPrecio.getText())  );
+            modelo.setCategoria(vista.txtCategoria.getText());
+            
+            modelo.Guardar();
         }
         
     }
