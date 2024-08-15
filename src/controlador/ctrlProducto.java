@@ -21,6 +21,12 @@ public class ctrlProducto implements MouseListener {
         this.modelo = Modelo;
         
       vista.btnGuardar.addMouseListener(this);
+      
+      
+      
+     vista.tablaMostrar.addMouseListener(this);
+      modelo.Mostrar(vista.tablaMostrar);
+      
     }
 
     @Override
@@ -31,27 +37,24 @@ public class ctrlProducto implements MouseListener {
             modelo.setCategoria(vista.txtCategoria.getText());
             
             modelo.Guardar();
+            modelo.Mostrar(vista.tablaMostrar);
         }
         
     }
 
     @Override
     public void mousePressed(MouseEvent e) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
     @Override
     public void mouseReleased(MouseEvent e) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
     @Override
     public void mouseEntered(MouseEvent e) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
     @Override
     public void mouseExited(MouseEvent e) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 }

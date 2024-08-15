@@ -2,6 +2,8 @@
 package modelo;
 import java.sql.*;
 import java.util.UUID;
+import javax.swing.JTable;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -63,6 +65,32 @@ public class Producto {
  
         } catch (SQLException ex) {
             System.out.println("este es el error en el modelo:metodo guardar " + ex);
+        }
+    }
+    
+    public void Mostrar(JTable tabla) {
+     
+        Connection conexion = ClaseConexion.getConexion();
+        
+        DefaultTableModel modeloPinulito = new DefaultTableModel();
+        modeloPinulito.setColumnIdentifiers(new Object[]{"UUID_producto", "Nombre", "Precio", "Categoria"});
+        try {
+         
+            Statement statement = conexion.createStatement();
+           
+            ResultSet rs = statement.executeQuery("SELECT * FROM tbProducto");
+          
+            while (rs.next()) {
+                
+                modeloPinulito.addRow(new Object[]{rs.getString("UUID_producto"), 
+                    rs.getString("nombre"), 
+                    rs.getInt("precio"), 
+                    rs.getString("categoria")});
+            }
+           
+            tabla.setModel(modeloPinulito);
+        } catch (Exception e) {
+            System.out.println("Este es el error en el modelo, metodo mostrar " + e);
         }
     }
 }
