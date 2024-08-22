@@ -93,6 +93,50 @@ public class Producto {
             System.out.println("Este es el error en el modelo, metodo mostrar " + e);
         }
     }
+    
+    
+    public void Eliminar(JTable tabla) {
+        //Creamos una variable igual a ejecutar el método de la clase de conexión
+        Connection conexion = ClaseConexion.getConexion();
+ 
+        //obtenemos que fila seleccionó el usuario
+        int filaSeleccionada = tabla.getSelectedRow();
+        //Obtenemos el id de la fila seleccionada
+        String miId = tabla.getValueAt(filaSeleccionada, 0).toString();
+        //borramos 
+        try {
+            PreparedStatement deleteEstudiante = conexion.prepareStatement("delete from tbProducto where UUID_producto = ?");
+            deleteEstudiante.setString(1, miId);
+            deleteEstudiante.executeUpdate();
+        } catch (Exception e) {
+            System.out.println("este es el error metodo de eliminar" + e);
+        }
+    }
+    
+    public void Actualizar (JTable tabla){
+        Connection conexion = ClaseConexion.getConexion();
+        
+        int filaSeleccionada = tabla.getSelectedRow();
+        
+        if (filaSeleccionada != 1){
+            String miUUID = tabla.getValueAt(filaSeleccionada, 0).toString();
+            try {
+                PreparedStatement updateUser = conexion.prepareStatement("update tbProducto set nombre = ?, precio = ?, categoria = ?, where UUID_producto = ?");
+                updateUser.setString(1, getNombre());
+                updateUser.setDouble(2, getPrecio());
+                updateUser.setString(3, getCategoria());
+                updateUser.setString(4, miUUID);
+                updateUser.executeUpdate();
+            }catch(Exception e){
+                System.out.println("este es el erro del metodo de actualizar" + e);
+                
+            }
+        }else{
+            System.out.println("no funciona el metodo de actualizar");
+            
+        }
+    }
+    
 }
 
 
